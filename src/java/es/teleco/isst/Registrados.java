@@ -25,7 +25,7 @@ public class Registrados {
         Class.forName("com.mysql.jdbc.Driver");
         
         Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/sql", "isst", "isst");
+                "jdbc:mysql://localhost/isst", "isst", "isst");
             String query = "SELECT * FROM gestor";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
