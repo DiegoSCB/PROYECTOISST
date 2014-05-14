@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user",login);
             //setting session to expiry in 2 mins
             session.setMaxInactiveInterval(5*60);
-            response.sendRedirect("index2.jsp");
+            response.sendRedirect("index.jsp");
             session.setAttribute("logged", true);
          }else{
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/formulario.jsp");
