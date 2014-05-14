@@ -26,7 +26,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	  <title>Restaurante ISST | Galeria</title>
+	  <title>Restaurante ISST | Eliminar Productos</title>
 	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	  <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
@@ -68,11 +68,11 @@
                                                 
                                                 <li><a style="visibility:<%=visibility%>" href="productos.jsp"> Añadir Productos</a></li> 
                                                 <li><a style="visibility:<%=visibility%>" href="eliminarproductos.jsp"> Eliminar Productos</a></li>                                                
-						<li><a style="visibility:<%=visibility%>" href="ofertas.jsp">Ofertas</a></li>
+						<li><a style="visibility:<%=visibility%>" href="estadisticas.jsp">Estadisticas</a></li>
                                                         <% } else { %>
                                                 <li class="active"><a  href="eliminarproductos.jsp">Eliminar Productos</a></li> 
                                                 <li><a  href="productos.jsp"> Añadir Productos</a></li>
-						<li><a  href="ofertas.jsp">Ofertas</a></li>
+						<li><a  href="estadisticas.jsp">Estadisticas</a></li>
                                                 <% } %>
 						
 					</ul>
@@ -104,7 +104,7 @@
                                                   
                                                   %>
                                                          <div class="gallery-grid">
-                                                             <a href="#"><img src="<%=imagenurl%>" alt="" /><span><%=precio%></span></a>
+                                                             <a href="#"><img src="<%=imagenurl%>" alt="" /><span><%=precio%>€</span></a>
 							<h4><%=nombreproducto%></h4>
                                                         
 							<p><%=descripcion%></p>

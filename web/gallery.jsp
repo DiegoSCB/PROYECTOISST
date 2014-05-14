@@ -68,11 +68,11 @@
                                                 
                                                 <li><a style="visibility:<%=visibility%>" href="productos.jsp"> Añadir Productos</a></li> 
                                                 <li><a style="visibility:<%=visibility%>" href="eliminarproductos.jsp"> Eliminar Productos</a></li>
-						<li><a style="visibility:<%=visibility%>" href="ofertas.jsp">Ofertas</a></li>
+						<li><a style="visibility:<%=visibility%>" href="estadisticas.jsp">Estadisticas</a></li>
                                                         <% } else { %>
                                                 <li><a  href="eliminarproductos.jsp">Eliminar Productos</a></li> 
                                                 <li><a  href="productos.jsp"> Añadir Productos</a></li>
-						<li><a  href="ofertas.jsp">Ofertas</a></li>
+						<li><a  href="estadisticas.jsp">Estadisticas</a></li>
                                                 <% } %>
 						
 					</ul>

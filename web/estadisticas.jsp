@@ -1,6 +1,6 @@
 <%-- 
-    Document   : producto
-    Created on : 07-may-2014, 12:39:45
+    Document   : estadisticas
+    Created on : 14-may-2014, 16:35:14
     Author     : Juan Manuel
 --%>
 
@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Restaurante ISST | Productos</title>
+  <title>Restaurante ISST | Estadisticas</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
@@ -46,8 +46,8 @@
 						<li><a href="gallery.jsp">Galeria</a></li>
 						<li><a href="contact.jsp">Contacto</a></li>
                                                 <li><a  href="eliminarproductos.jsp"> Eliminar Productos</a></li>
-						<li class="active"><a href="productos.jsp">Añadir Productos</a></li>
-                                                <li><a href="estadisticas.jsp">Estadisticas</a></li>
+						<li><a href="productos.jsp">Añadir Productos</a></li>
+                                                <li class="active"><a href="estadisticas.jsp">Estadisticas</a></li>
 						<div class="clear"> </div>
 					</ul>
 				</div>
@@ -69,39 +69,13 @@
 
 				<div class="col span_2_of_3">
 				  <div class="contact-form">
-				  	<h3>Introduce un plato nuevo:</h3>
+				  	<h3>Estadisticas:</h3>
 					    <form method="post" action="/ISST/CrearProducto">
 					    	<div>
-						    	<span><label>NOMBRE</label></span>
+						    	<span><label>PRODUCTO MAS VENDIDO</label></span>
 						    	<span><input name="nombre" type="text" value="" class="textbox"></span>
 						    </div>
-						    <div>
-						    	<span><label>CATEGORIA</label></span>
-                                                        <!--select class="form-control" id="category" name="categoria">
-                                                        <% for (int i=1; i<=11; i++)
-                                                        { %>
-                                                        <option><%=i%></option>
-                                                        <%}
-                                                        %>
-                                                        </select-->
-						    	<span><input name="categoria" type="text" class="textbox"></span>
-                                                        
-						    </div>
-						    <div>
-						    	<span><label>INGREDIENTES</label></span>
-						    	<span><textarea name="ingredientes" type="text" class="texbox"> </textarea></span>
-						    </div>
-						    <div>
-						    	<span><label>DESCRIPCION</label></span>
-						    	<span><textarea name="descripcion"> </textarea></span>
-						    </div>
-						    <div>
-						    	<span><label>PRECIO</label></span>
-						    	<span><input name="precio" type="text" class="textbox"></span>
-						    </div>
-						   <div>
-						   		<span><input type="submit" class="mybutton" value="Submit"></span>
-						  </div>
+						    
 					    </form>
 
 				    </div>
@@ -116,4 +90,3 @@
 
 		 <!---End-footer---->
 	</body>
-</html>

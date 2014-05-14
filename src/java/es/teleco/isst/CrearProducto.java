@@ -47,7 +47,7 @@ public class CrearProducto extends HttpServlet {
         try{
         Class.forName("com.mysql.jdbc.Driver");
         Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/restaurante", "isst", "isst");
+                "jdbc:mysql://localhost/sql", "isst", "isst");
         String query = "INSERT INTO products(name, description, ingredients, id_menu, id_category, image, availability, price) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1, producto.get("nombre"));

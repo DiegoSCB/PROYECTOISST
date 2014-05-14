@@ -44,7 +44,7 @@ public class EliminarProducto extends HttpServlet {
                 int id = Integer.valueOf(idParam);
                 Class.forName("com.mysql.jdbc.Driver");
                     Connection connection = DriverManager.getConnection(
-                            "jdbc:mysql://localhost/restaurante", "isst", "isst");
+                            "jdbc:mysql://localhost/sql", "isst", "isst");
                     String query = "DELETE FROM products WHERE id_product=?";
                     PreparedStatement pst = connection.prepareStatement(query);
                     pst.setInt(1, id);

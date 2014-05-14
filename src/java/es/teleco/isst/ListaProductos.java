@@ -28,7 +28,7 @@ public class ListaProductos {
             Class.forName("com.mysql.jdbc.Driver");
         
         Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/restaurante", "isst", "isst");
+                "jdbc:mysql://localhost/sql", "isst", "isst");
             String query = "SELECT * FROM products";
             PreparedStatement pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
