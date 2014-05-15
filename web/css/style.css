@@ -1023,6 +1023,15 @@ body{
 	.gallery-grid a span{
 		line-height:3em;
 	}
-	
-	
+}
+.resized-images{
+    display: block;
+    width:440px;
+    height:200px;
+}
+
+.footer-images{
+    display: block;
+    height: 120px;
+    max-width: 350px;
 }

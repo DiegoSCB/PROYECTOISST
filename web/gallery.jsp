@@ -104,10 +104,12 @@
                                                   
                                                   %>
                                                          <div class="gallery-grid">
-                                                             <a href="#"><img src="<%=imagenurl%>" alt="" /><span><%=precio%>€</span></a>
-							<h4><%=nombreproducto%></h4>
+                                                             <a class="resized-images" href="#"><img class="resized-images" src="<%=imagenurl%>" alt="" /><span><%=precio%>€</span></a>
+                                                             <div class="footer-images">
+                                                                <h4><%=nombreproducto%></h4>
                                                         
-							<p><%=descripcion%></p>
+                                                                <p><%=descripcion%></p>
+                                                             </div>
                                                   
                                                         
 						</div>
