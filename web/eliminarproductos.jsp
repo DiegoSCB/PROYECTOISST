@@ -14,7 +14,7 @@
     
     Class.forName("com.mysql.jdbc.Driver");
         Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/restaurante", "isst", "isst");
+                "jdbc:mysql://localhost/isst", "isst", "isst");
         String query = "SELECT * FROM products";
         PreparedStatement pst = connection.prepareStatement(query);
         ResultSet rs = pst.executeQuery();
@@ -104,10 +104,12 @@
                                                   
                                                   %>
                                                          <div class="gallery-grid">
-                                                             <a href="#"><img src="<%=imagenurl%>" alt="" /><span><%=precio%>€</span></a>
-							<h4><%=nombreproducto%></h4>
+                                                             <a class="resized-images" href="#"><img class="resized-images" src="<%=imagenurl%>" alt="" /><span><%=precio%>€</span></a>
+                                                             <div class="footer-images">
+                                                                <h4><%=nombreproducto%></h4>
                                                         
-							<p><%=descripcion%></p>
+                                                                <p><%=descripcion%></p>
+                                                             </div>
                                                   
                                                         <form method="POST" action="/ISST/EliminarProducto">
                                                             <input type="hidden" value="<%=id%>" name="productid"/>
