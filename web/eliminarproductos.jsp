@@ -54,30 +54,32 @@
 			<div class="top-nav">
 				<div class="top-nav-left">
 					<ul>
-						<li ><a href="index.jsp">Home</a></li>
-						<li><a href="about.jsp">Sobre nosotros</a></li>
-						<li><a href="services.jsp">Servicios</a></li>
-						<li ><a href="gallery.jsp">Galeria</a></li>
-						<li><a href="contact.jsp">Contacto</a></li><%
+						<li><a href="index.jsp">Home</a></li>
+                                                <%
                                                     Boolean logged = (Boolean)session.getAttribute("logged");
+                                                    String displayGestor = "";
+                                                    String displayCliente = "";
                                                     if (logged == null || !logged){
                                                         System.out.println("anon");
-                                                    String visibility = "hidden";
-                                                    
-                                                    %>
-                                                
-                                                <li><a style="visibility:<%=visibility%>" href="productos.jsp"> Añadir Productos</a></li> 
-                                                <li><a style="visibility:<%=visibility%>" href="eliminarproductos.jsp"> Eliminar Productos</a></li>                                                
-						<li><a style="visibility:<%=visibility%>" href="estadisticas.jsp">Estadisticas</a></li>
-                                                        <% } else { %>
-                                                <li class="active"><a  href="eliminarproductos.jsp">Eliminar Productos</a></li> 
-                                                <li><a  href="productos.jsp"> Añadir Productos</a></li>
-						<li><a  href="estadisticas.jsp">Estadisticas</a></li>
-                                                <% } %>
-						
+                                                        displayGestor = "none";
+                                                        displayCliente = "";
+                                                    } else {
+                                                        displayGestor = "";
+                                                        displayCliente = "none";
+                                                    }
+                                                %>
+                                                <li><a style="display:<%=displayCliente%>" href="about.jsp">Sobre nosotros</a></li>
+                                                <li><a href="mesasLibres.jsp">Mesas Libres</a></li>
+                                                <li><a style="display:<%=displayCliente%>" href="contact.jsp">Contacto</a></li>
+                                                <li><a href="services.jsp">Servicios</a></li>
+						<li><a href="gallery.jsp">Galeria</a></li>
+                                                <li><a style="display:<%=displayGestor%>" href="productos.jsp"> Añadir Productos</a></li> 
+                                                <li class="active"><a style="display:<%=displayGestor%>" href="eliminarproductos.jsp"> Eliminar Productos</a></li>                                                
+						<li><a style="display:<%=displayGestor%>" href="estadisticas.jsp">Estadisticas</a></li>
+
 					</ul>
 				</div>
-				
+
 				<div class="clear"> </div>
 			</div>
 			<!---End-top-nav---->
