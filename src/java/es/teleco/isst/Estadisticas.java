@@ -3,150 +3,173 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package es.teleco.isst;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-package es.teleco.isst;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 /**
-package es.teleco.isst;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
  *
- * @author Juan Manuel
+ * @author thaerlo
  */
 public class Estadisticas {
-       public int masvendido=1;
-       public int idmasvendido=1;
-    Producto productoaux;
-       int contadorproductos=0;
-    public String cajaDia(){
-       
-       int contador=0;
-    try{
+
+    public String [][] masVendido() { //Devuelve un array bidi con Nombre prod en 1st col y numero de unidades en 2nd col
+        
+        String [][] resultado = new String[5][2];
+        try { 
             Class.forName("com.mysql.jdbc.Driver");
-        
-        Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/isst", "isst", "isst");
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/isst", "isst", "isst");
             /*String query = "SELECT orders.id_product, products.price FROM orders, products where orders.id_product = products.id_product ";*/
-            String query ="SELECT * FROM orders";
-            
-            String query3="SELECT * FROM products";
-        PreparedStatement pst = connection.prepareStatement(query);
-        PreparedStatement pst3=connection.prepareStatement(query3);
-        
-        
+            String query = "SELECT name, COUNT(products.id_product) mycount from orders\n" +
+                           "RIGHT JOIN products\n" +
+                           "ON products.id_product = orders.id_product\n" +
+                           "group by products.id_product\n" +
+                           "order by mycount desc;";
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
             ResultSet rs = pst.executeQuery();
-            ResultSet rs3 = pst3.executeQuery();
-            
-            while(rs3.next()){
-                contadorproductos=contadorproductos+1;
+            int i = 0;
+            while(rs.next()){
+                resultado[i][0] = rs.getString(1);
+                resultado[i][1] = Integer.toString(rs.getInt(2));
+                i++;
             }
-            while(rs.next()) {
-               /* System.out.println("ID:" + rs.getInt(1) + " $:" + rs.getDouble(2));*/
-                contador=contador+1;
-            }
-            int [] ventasdia = new int[contador];
-            System.out.println(contador +"quecojones");
-            System.out.println(contadorproductos +"quecojones222");
-            int p=0;
-            Connection connection2 = DriverManager.getConnection(
-                "jdbc:mysql://localhost/isst", "isst", "isst");
-            String query4="SELECT * FROM orders";
-            PreparedStatement pst4=connection2.prepareStatement(query4);
-            ResultSet rs4 = pst4.executeQuery();
-            
-            while(rs4.next()){
-                System.out.println("ID:" + rs4.getInt(2));
-                ventasdia[p]=rs4.getInt(2);
-                p++;
-            }
-        calculaCaja(ventasdia);
-           /*String elmasvendido = SacaMasVendido.Sacar(idmasvendido); */
-    
-            System.out.println(idmasvendido);
-            if(productoaux!=null){
-            return productoaux.getNombre();
-            }
-            else{
-                return "no se ha vendido nada";
-            }
-        }
-        catch(Exception ex){
+        } //Este cierra try
+        catch (Exception ex) {
             ex.printStackTrace();
         }
-    return "error";
+        return resultado;
     }
+    public String [][] menosVendido() { //Devuelve un array bidi con Nombre prod en 1st col y numero de unidades en 2nd col
+        
+        String [][] resultado = new String[5][2];
+        try { 
+            Class.forName("com.mysql.jdbc.Driver");
 
-    private Producto calculaCaja(int[] ventasdia) throws ClassNotFoundException, SQLException {
-        
-        int valormax=0;
-        int posicion;
-        for(int j =0; j<ventasdia.length-1;j++){
-            if(ventasdia[j]>valormax){
-                valormax= ventasdia[j];
-            }
-            else{valormax=valormax;
-        }
-        }
-        int [] aux = new int [contadorproductos];
-        for (int i=0; i<ventasdia.length-1;i++){
-            posicion= ventasdia[i];
-            aux[posicion]=aux[posicion]+1; //la posicion de este array va a coincidir con el id del producto, por tanto la posicion que tenga el valor mayor indicara el producto más vendido;
-        }
-        for(int k=0; k<aux.length-1;k++){
-            if(aux[k]>masvendido){
-                masvendido=aux[k];
-                idmasvendido=k;
-                
-            }else{
-                masvendido=masvendido;
-                idmasvendido=idmasvendido;
-            }
-        }
-       try{ /*Class.forName("com.mysql.jdbc.Driver");
-        
-        Connection connection2 = DriverManager.getConnection(
-                "jdbc:mysql://localhost/isst", "isst", "isst");*/
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/isst", "isst", "isst");
             /*String query = "SELECT orders.id_product, products.price FROM orders, products where orders.id_product = products.id_product ";*/
-          /*  String query =" SELECT * FROM products WERE id_product=?";
-        PreparedStatement pst2 = connection2.prepareStatement(query);
-        System.out.println(idmasvendido);
-        pst2.setInt(1, idmasvendido);
-        ResultSet rs2 = pst2.executeQuery();
-        System.out.println("ID:" + rs2.getInt(1) + " nombre:" + rs2.getString(2));
-        productoaux = new Producto(rs2.getInt(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getInt(5), rs2.getInt(6), rs2.getString(7), rs2.getInt(8), rs2.getInt(9));
-        return productoaux;*/
-        ListaProductos listaestadistica = new ListaProductos();
-        int longitud = listaestadistica.listarProductos().size();
-      System.out.println(longitud);
-        int idaux;
-        for (int t=0;t<longitud;t++){
-            idaux=listaestadistica.listarProductos().get(t).getId();
-            if(idaux==idmasvendido){
-                System.out.println(idmasvendido);
-                System.out.println(idaux);
-                
-                productoaux=listaestadistica.listarProductos().get(t);
-                return productoaux;
+            String query = "SELECT name, COUNT(products.id_product) mycount from orders\n" +
+                           "RIGHT JOIN products\n" +
+                           "ON products.id_product = orders.id_product\n" +
+                           "group by products.id_product\n" +
+                           "order by mycount;";
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            int i = 0;
+            while(rs.next()){
+                resultado[i][0] = rs.getString(1);
+                resultado[i][1] = Integer.toString(rs.getInt(2));
+                i++;
             }
-            else{}
-            
-        }
-       }
-       catch(Exception ex){
+        } //Este cierra try
+        catch (Exception ex) {
             ex.printStackTrace();
         }
+        return resultado;
+    }
+    
+    public String [][] platosMasLentos() { //Devuelve un array bidi con Nombre prod en 1st col y numero de unidades en 2nd col
         
-    return productoaux;
+        String [][] resultado = new String[15][2];
+        try { 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/isst", "isst", "isst");
+            /*String query = "SELECT orders.id_product, products.price FROM orders, products where orders.id_product = products.id_product ";*/
+            String query = "SELECT name,avg(TIMESTAMPDIFF(MINUTE,creation_date,prepared_date)) \n" +
+                            "AS tiempoMedio\n" +
+                            "FROM orders\n" +
+                            "LEFT JOIN products \n" +
+                            "ON products.id_product = orders.id_product\n" +
+                            "GROUP BY orders.id_product\n" +
+                            "ORDER by tiempoMedio desc;";
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            int i = 0;
+            while(rs.next()){
+                resultado[i][0] = rs.getString(1);
+                resultado[i][1] = Integer.toString(rs.getInt(2));
+                i++;
+            }
+        } //Este cierra try
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return resultado;
+    }
+    
+    
+    public String [][] cajaDias() { //Devuelve un array bidi con Nombre prod en 1st col y numero de unidades en 2nd col
+        
+        String [][] resultado = new String[7][2];
+        try { 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/isst", "isst", "isst");
+            /*String query = "SELECT orders.id_product, products.price FROM orders, products where orders.id_product = products.id_product ";*/
+            String query = "SELECT DATE_FORMAT(delivered_date, '%W') AS dia, ROUND(SUM(price),2)\n" +
+                            "FROM orders\n" +
+                            "LEFT JOIN products\n" +
+                            "ON products.id_product = orders.id_product\n" +
+                            "GROUP BY dia;";
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            int i = 0;
+            while(rs.next()){
+                resultado[i][0] = rs.getString(1);
+                resultado[i][1] = Double.toString(rs.getDouble(2));
+                i++;
+            }
+        } //Este cierra try
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return resultado;
+    }
+    
+    public String [][] cajaActual() { //Devuelve un array bidi con Nombre prod en 1st col y numero de unidades en 2nd col
+        
+        String [][] resultado = new String[1][2];
+        try { 
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/isst", "isst", "isst");
+            /*String query = "SELECT orders.id_product, products.price FROM orders, products where orders.id_product = products.id_product ";*/
+            String query = "SELECT DATE_FORMAT(delivered_date, '%W') AS dia, ROUND(SUM(price),2)\n" +
+                            "FROM orders\n" +
+                            "LEFT JOIN products\n" +
+                            "ON products.id_product = orders.id_product\n" +
+                            "WHERE DATE(delivered_date) = DATE(NOW())\n" +
+                            "GROUP BY dia;";
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            ResultSet rs = pst.executeQuery();
+            
+            rs.next();
+            resultado[0][0] = rs.getString(1);
+            resultado[0][1] = Double.toString(rs.getDouble(2));
+        } //Este cierra try
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return resultado;
+    }
+    
     
 }
-}
-
