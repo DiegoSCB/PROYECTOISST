@@ -1,3 +1,4 @@
+ <%@page import="es.teleco.isst.Estadisticas"%>
 <%-- 
     Document   : gallery
     Created on : 07-may-2014, 12:18:39
@@ -95,6 +96,7 @@
 					<div class="gallery-grids">
                                                   <%     
                                                         ListaProductos c = new ListaProductos();
+                                                        
                                                          int longitud = c.listarProductos().size();
                                                          for (int i=0;i<longitud;i++){
                                                              String imagenurl = c.listarProductos().get(i).getImagen();

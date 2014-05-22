@@ -4,6 +4,7 @@
     Author     : Juan Manuel
 --%>
 
+<%@page import="es.teleco.isst.Estadisticas"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
@@ -87,7 +88,18 @@
 				  	<h3>Estadisticas:</h3>
 					    <form method="post" action="/ISST/CrearProducto">
 					    	<div>
+                                                    <% 
+                                                    Estadisticas estadistica = new Estadisticas();
+                                                    String topventas = estadistica.cajaDia();
+                                                    
+                                                    %>
+                                                  
 						    	<span><label>PRODUCTO MAS VENDIDO</label></span>
+                                                        <span><input name="nombre" type="text" value="<%=topventas%>" class="textbox"></span>
+                                                        
+						    </div>
+                                                <div>
+						    	<span><label>CAJA DEL DÍA</label></span>
 						    	<span><input name="nombre" type="text" value="" class="textbox"></span>
 						    </div>
 						    
