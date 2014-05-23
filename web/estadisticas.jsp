@@ -17,9 +17,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+        <link href="css/tables.css" rel="stylesheet" type="text/css"  media="all" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     </head>
-    <body>
+<body>
         <!----start-header----->
         <div class="header">
             <div class="wrap">
@@ -85,103 +86,102 @@
 
                         <div class="col span_2_of_3">
                             <div class="contact-form">
-                                <h3>Estadisticas:</h3>
+                                <h3>Estadísticas:</h3>
                                 <form method="post" action="/ISST/CrearProducto">
                                     <div>
-
                                         <%
                                             Estadisticas estadistica1 = new Estadisticas();
                                             String[][] topventas = estadistica1.masVendido();
                                             int longitud = topventas.length;
                                         %>
-
-                                        <span><label>PRODUCTOS MAS VENDIDOS</label></span>
-                                        <table>
-                                            <tr>
-                                                <th>Productos más vendidos</th><th>Nº Unidades</th>
-                                            </tr>
+                                        <table class="bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Productos más vendidos</th><th>Nº Unidades</th>
+                                                </tr>
+                                            </thead>
                                             <%
                                                 for (int i = 0; i < longitud; i++) {
                                             %>
-
-                                            <tr>
-                                                <td><%=topventas[i][0]%></td><td><%=topventas[i][1]%></td>
-                                            </tr> 
+                                            <tbody>
+                                                <tr>
+                                                    <td><%=topventas[i][0]%></td><td><%=topventas[i][1]%></td>
+                                                </tr> 
+                                            </tbody>
                                             <%}%>
                                         </table>
 
                                     </div>
                                     <div>
-
                                         <%
                                             Estadisticas estadistica2 = new Estadisticas();
                                             String[][] lessventas = estadistica2.menosVendido();
                                             int longitud2 = lessventas.length;
                                         %>
-
-                                        <span><label>PRODUCTOS MENOS VENDIDOS</label></span>
-                                        <table>
-                                            <tr>
-                                                <th>Productos menos vendidos</th><th>Nº Unidades</th>
-                                            </tr>
+                                        <table class="bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Productos menos vendidos</th><th>Nº Unidades</th>
+                                                </tr>
+                                            </thead>
                                             <%
                                                 for (int i = 0; i < longitud2; i++) {
                                             %>
-
-                                            <tr>
-                                                <td><%=lessventas[i][0]%></td><td><%=lessventas[i][1]%></td>
-                                            </tr> 
+                                            <tbody
+                                                <tr>
+                                                    <td><%=lessventas[i][0]%></td><td><%=lessventas[i][1]%></td>
+                                                </tr> 
+                                            </tbody>
                                             <%}%>
                                         </table>
 
                                     </div>
                                     <div>
-
                                         <%
                                             Estadisticas estadistica3 = new Estadisticas();
                                             String[][] lentos = estadistica3.platosMasLentos();
                                             int longitud3 = lentos.length;
                                         %>
-
-                                        <span><label>PRODUCTOS MAS LENTOS</label></span>
-                                        <table>
-                                            <tr>
-                                                <th>Productos más lentos</th><th>Tiempo medio (minutos)</th>
-                                            </tr>
+                                        <table class="bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Productos más lentos</th><th>Tiempo medio (minutos)</th>
+                                                </tr>
+                                            </thead>
                                             <%
                                                 for (int i = 0; i < longitud3; i++) {
                                             %>
-
-                                            <tr>
-                                                <td><%=lentos[i][0]%></td><td><%=lentos[i][1]%></td>
-                                            </tr> 
+                                            <tbody
+                                                <tr>
+                                                    <td><%=lentos[i][0]%></td><td><%=lentos[i][1]%></td>
+                                                </tr> 
+                                            </tbody>
                                             <%}%>
                                         </table>
 
                                     </div>
                                     <div>
-
                                         <%
                                             Estadisticas estadistica4 = new Estadisticas();
                                             String[][] cajaDias = estadistica4.cajaDias();
                                             int longitud4 = cajaDias.length;
                                         %>
-
-                                        <span><label>CAJA POR DIAS</label></span>
-                                        <table>
-                                            <tr>
-                                                <th>Dias</th><th>Dinero acumulado (euros)</th>
-                                            </tr>
+                                        <table class="bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Dias</th><th>Dinero acumulado (euros)</th>
+                                                </tr>
+                                            </thead>
                                             <%
                                                 for (int i = 0; i < longitud4; i++) {
                                             %>
-
-                                            <tr>
-                                                <td><%=cajaDias[i][0]%></td><td><%=cajaDias[i][1]%></td>
-                                            </tr> 
+                                            <tbody>
+                                                <tr>
+                                                    <td><%=cajaDias[i][0]%></td><td><%=cajaDias[i][1]%></td>
+                                                </tr> 
+                                            </tbody>
                                             <%}%>
                                         </table>
-
                                     </div>
 
                                     <div>
@@ -191,16 +191,22 @@
                                             String[][] cajaActual = estadistica5.cajaActual();
                                             int longitud5 = cajaActual.length;
                                         %>
+                                        <table class="bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Caja del día en curso</th>
+                                                </tr>
+                                            </thead>
+                                            <%
+                                                for (int i = 0; i < longitud5; i++) {
+                                            %>
 
-                                        <span><label>CAJA ACTUAL</label></span>
-                                        <%
-                                            for (int i = 0; i < longitud5; i++) {
-                                        %>
-
-                                        <span>
-                                            <%=cajaActual[i][1]%> €
-                                        </span> 
-                                        <%}%>
+                                            <tbody>
+                                                <tr>
+                                                    <td><%=cajaActual[i][1]%> €</td>
+                                                </tr> 
+                                            </tbody> 
+                                            <%}%>
                                         </table>
 
                                     </div>
