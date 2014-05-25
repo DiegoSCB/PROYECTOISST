@@ -47,7 +47,9 @@ public class ListaMesas {
     public int cuentaMesasDisponibles(){
     int contador = 0;
         for (Mesa i : mesas){
-        contador++;
+            if(i.getAvailable() == true){
+                contador++;
+            }
         }
         return contador;
     }

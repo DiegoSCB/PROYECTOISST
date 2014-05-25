@@ -55,13 +55,16 @@
               visibility_logout= "";
         }
       %>
-      <div class="container" <%=visibility_logout %> >
-           <form method="post" action="LogoutServlet">
-        <p class="submit" ><input type="submit" name="commit" value="Logout"></p>
-      </form>
-      </div>
+      
+
+      
       <div class="container">
-         <a class="button1" href="index.jsp">Volver</a>
+        <div <%=visibility_logout %> >
+          <form method="post" action="LogoutServlet">
+            <p class="submit" ><input class="logout" type="submit" name="commit" value="Logout"></p>
+          </form>
+        </div>
+          <a class="button2" href="index.jsp">Volver</a>
       </div>
   </section>
 

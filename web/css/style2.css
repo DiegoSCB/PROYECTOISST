@@ -120,7 +120,26 @@ body {
   margin-left: 280px;
   display: inline-block;
   background:#352f2f;
- 
+}
+.button2{
+  color: #FFF;
+  font-size: 0.875em;
+  text-transform: uppercase;
+   text-align: center;
+  padding:10px 15px;
+  border: 1px solid #EEE;
+  background:#352f2f;
+  display:block;
+  margin-top:10px;
+  margin-left:auto;
+  margin-right:auto;
+  width: 100px;
+}
+.logout{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:20px;
 }
 .container {
   margin: 80px auto;

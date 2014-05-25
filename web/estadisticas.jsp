@@ -23,6 +23,24 @@
 <body>
         <!----start-header----->
         <div class="header">
+            <%
+                 Boolean logged = (Boolean) session.getAttribute("logged");
+                 String displayGestor = "";
+                 String displayCliente = "";
+                 String entrar = "Entrar";
+                 String gestor = "Bienvenido, Gestor";
+                 String userActual = "";
+                 if (logged == null || !logged) {
+                     System.out.println("anon");
+                     displayGestor = "none";
+                     displayCliente = "";
+                     userActual = entrar;
+                 } else {
+                     displayGestor = "";
+                     displayCliente = "none";
+                     userActual = gestor;
+                 }
+             %>
             <div class="wrap">
                 <div class="top-header">
                     <div class="logo">
@@ -33,7 +51,7 @@
                             <li><a href="#"><img src="images/facebook.png" title="facebook" /></a></li>
                             <li><a href="#"><img src="images/twitter.png" title="twitter" /></a></li>
                             <li><a href="#"><img src="images/google.png" title="google pluse" /></a></li>
-                            <li><a class="button1" href="formulario.jsp">Entrar</a></li>
+                            <li><a class="button1" href="formulario.jsp"><%=userActual%></a></li>
                         </ul>
                     </div>
                     <div class="clear"> </div>
@@ -43,19 +61,6 @@
                     <div class="top-nav-left">
                         <ul>
                             <li><a href="index.jsp">Home</a></li>
-                                <%
-                                    Boolean logged = (Boolean) session.getAttribute("logged");
-                                    String displayGestor = "";
-                                    String displayCliente = "";
-                                    if (logged == null || !logged) {
-                                        System.out.println("anon");
-                                        displayGestor = "none";
-                                        displayCliente = "";
-                                    } else {
-                                        displayGestor = "";
-                                        displayCliente = "none";
-                                    }
-                                %>
                             <li><a style="display:<%=displayCliente%>" href="about.jsp">Sobre nosotros</a></li>
                             <li><a href="mesasLibres.jsp">Mesas Libres</a></li>
                             <li><a style="display:<%=displayCliente%>" href="contact.jsp">Contacto</a></li>
